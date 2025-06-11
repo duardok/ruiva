@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dia dos Namorados</title>
+    <link rel="icon" href="https://i.ibb.co/your-icon-url.ico" type="image/x-icon" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e6f4ea; /* Cor de fundo da página */
+            color: #154734;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centraliza verticalmente */
+            align-items: center;
+            gap: 16px;
+        }
+        .password-container {
+            background-color: #e6f4ea; /* Fundo verde */
+            border-radius: 20px; /* Bordas arredondadas */
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center; /* Alinha o conteúdo verticalmente */
+            gap: 10px; /* Espaçamento entre a imagem e o campo de senha */
+        }
+        .password-input {
+            border: 2px solid #4caf50; /* Borda verde */
+            border-radius: 10px; /* Bordas arredondadas */
+            padding: 10px;
+            font-size: 1.2em;
+            outline: none;
+            width: 200px; /* Largura do campo de senha */
+        }
+        .password-input:focus {
+            border-color: #66bb6a; /* Cor da borda ao focar */
+        }
+        .profile-pic {
+            width: 60px; /* Tamanho do círculo */
+            height: 60px; /* Tamanho do círculo */
+            border-radius: 50%; /* Faz a imagem ser circular */
+            object-fit: cover; /* Corta a imagem para caber no círculo */
+            border: 2px solid #4caf50; /* Borda verde */
+        }
+        h1 {
+            font-size: 2.8em;
+            margin-top: 40px;
+            color: #2e7d32;
+            display: none; /* Inicialmente escondido */
+        }
+        p {
+            font-size: 1.3em;
+            margin: 16px 20px;
+            max-width: 450px;
+            line-height: 1.5;
+            display: none; /* Inicialmente escondido */
+        }
+        .heart {
+            font-size: 5.5em;
+            color: #4caf50;
+            animation: heartbeat 1.2s infinite;
+            display: none; /* Inicialmente escondido */
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        button {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 14px 20px; /* Ajuste de padding */
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 6px 12px rgba(46, 125, 50, 0.4);
+        }
+        button:hover,
+        button:focus {
+            background-color: #66bb6a;
+            outline: none;
+        }
+        /* Gallery Section */
+        #gallery {
+            display: none; /* Ensure hidden initially */
+            max-width: 900px;
+            margin: 20px auto 40px;
+            padding: 0 20px;
+            width: 100%;
+            grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+            gap: 20px;
+            justify-items: center;
+            display: grid; /* Remove duplicate and fix by applying grid styles without overriding display:none */
+        }
+        /* To fix display:none vs grid, separate properties */
+        #gallery.hidden {
+            display: none;
+        }
+        #gallery.visible {
+            display: grid;
+        }
+        #gallery img {
+            width: 100%;
+            max-width: 180px;
+            border-radius: 16px;
+            box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            object-fit: cover;
+            height: 180px;
+        }
+        #gallery img:hover,
+        #gallery img:focus {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.6);
+            outline: none;
+        }
+        /* Responsive */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            p {
+                font-size: 1.1em;
+                max-width: 300px;
+            }
+            .heart {
+                font-size: 4em;
+            }
+            button {
+                padding: 12px 28px;
+                font-size: 1em;
+            }
+            #gallery img {
+                max-width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="password-container" id="passwordContainer">
+        <img src="https://i.ibb.co/27DJNWhC/Whats-App-Image-2025-06-11-at-19-44-04.jpg" alt="Imagem de senha" class="profile-pic" />
+        <input type="text" class="password-input" id="passwordInput" placeholder="Digite a senha" />
+        <button id="submitPassword">Entrar</button>
+    </div>
+
+    <h1 id="mainTitle">Feliz Dia dos Namorados!</h1>
+    <div class="heart" aria-label="Coração pulsante">❤️🐢</div>
+    <p id="mainText">eu te amo de mais minha ruiva, por tudo que você tem me feito, por todo o carinho, todo o amor, todo o aconchego... quando digo que voce realmente é o amor da minha vida eu falo muito serio anna, e eu espero viver mais 1000 dia dos namorados com você meu amor❤</p>
+    <button id="showPhotosBtn" aria-controls="gallery" aria-expanded="false" style="display: none;">Clica pra ver nois</button>
+    
+    <section id="gallery" class="hidden" aria-live="polite" aria-label="Galeria de fotos românticas do casal">
+        <img src="https://i.ibb.co/RT8YLvq1/Whats-App-Image-2025-06-11-at-17-00-34.jpg" alt="Imagem 1" tabindex="0" />
+        <img src="https://i.ibb.co/jvkjCgX6/Whats-App-Image-2025-06-11-at-17-00-34-1.jpg" alt="Imagem 2" tabindex="0" />
+        <img src="https://i.ibb.co/9DNPGVk/Whats-App-Image-2025-06-11-at-17-00-34-2.jpg" alt="Imagem 3" tabindex="0" />
+        <img src="https://i.ibb.co/S4cCqZVq/Whats-App-Image-2025-06-11-at-17-00-34-3.jpg" alt="Imagem 4" tabindex="0" />
+        <img src="https://i.ibb.co/NnQDXqW3/Whats-App-Image-2025-06-11-at-19-58-24-1.jpg" alt="Imagem 5" tabindex="0" /> <!-- Nova imagem 5 -->
+        <img src="https://i.ibb.co/7N6qh1hY/Whats-App-Image-2025-06-11-at-19-58-24.jpg" alt="Imagem 6" tabindex="0" /> <!-- Nova imagem 6 -->
+        <img src="https://i.ibb.co/7xrBDpyZ/Whats-App-Image-2025-06-11-at-19-58-23-1.jpg" alt="Imagem 7" tabindex="0" /> <!-- Nova imagem 7 -->
+        <img src="https://i.ibb.co/21tLsMTt/Whats-App-Image-2025-06-11-at-19-58-23.jpg" alt="Imagem 8" tabindex="0" /> <!-- Nova imagem 8 -->
+    </section>
+
+<script>
+    // Função para verificar a senha
+    function checkPassword() {
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordContainer = document.getElementById('passwordContainer');
+        const submitButton = document.getElementById('submitPassword');
+        const mainTitle = document.getElementById('mainTitle');
+        const mainText = document.getElementById('mainText');
+        const heart = document.querySelector('.heart');
+        const showPhotosBtn = document.getElementById('showPhotosBtn');
+
+        submitButton.addEventListener('click', () => {
+            if (passwordInput.value === "15/01") {
+                passwordContainer.style.display = "none"; // Esconde a caixa de senha
+                mainTitle.style.display = "block"; // Exibe o título
+                mainText.style.display = "block"; // Exibe o texto
+                heart.style.display = "block"; // Exibe o coração
+                showPhotosBtn.style.display = "block"; // Exibe o botão
+            } else {
+                alert("Senha incorreta! Tente novamente."); // Alerta de senha incorreta
+                passwordInput.value = ""; // Limpa o campo de senha
+                passwordInput.focus(); // Foca no campo de senha
+            }
+        });
+    }
+
+    // Chama a função de verificação de senha ao carregar a página
+    window.onload = checkPassword;
+
+    const btn = document.getElementById('showPhotosBtn');
+    const gallery = document.getElementById('gallery');
+
+    btn.addEventListener('click', () => {
+        if (gallery.classList.contains('visible')) {
+            gallery.classList.remove('visible');
+            gallery.classList.add('hidden');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.textContent = 'Clique aqui para ver nossas fotos!';
+        } else {
+            gallery.classList.remove('hidden');
+            gallery.classList.add('visible');
+            btn.setAttribute('aria-expanded', 'true');
+            btn.textContent = 'Esconder fotos';
+            gallery.focus();
+        }
+        gallery.scrollIntoView({ behavior: 'smooth' });
+    });
+</script>
+</body>
+</html>
